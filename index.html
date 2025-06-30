@@ -43,38 +43,40 @@
             <hr />
           </div>
         </div>
-        <div class="col"></div>
-          <p>Layout:
-            <select id="layoutMode">
-              <option value="Push" selected>Push</option>
-              <option value="Move">Move</option>
-            </select>
-          </p>
-          <p>Root note and scale:
-            <select id="root">
-            </select>
-            <select id="scaleSel">
-            </select>
-          </p>
-          <p>Octave:
-            <button id="plus">+</button>
-            <button id="minus">-</button>
-          </p>
-          <p>Fixed:
-          <input type="checkbox" id="fixed" checked>
-          </p>
-          <p>Display note names
-            <input type="checkbox" id="showName" checked>
-            Use &flat; flats <input type="checkbox" id="showFlats">
-          </p>
-          <p>MIDI Input Port(s)
-            <select id="midiDevice">
-            </select>
-          </p>
+        <div class="row">
+          <div class="col">
+            <p>Layout:
+              <select id="layoutMode">
+                <option value="Push" selected>Push</option>
+                <option value="Move">Move</option>
+              </select>
+            </p>
+            <p>Root note and scale:
+              <select id="root">
+              </select>
+              <select id="scaleSel">
+              </select>
+            </p>
+            <p>Octave:
+              <button id="plus" class="btn btn-sm btn-outline-dark">+</button>
+              <button id="minus" class="btn btn-sm btn-outline-dark">-</button>
+            </p>
+            <p>Fixed:
+            <input type="checkbox" id="fixed" class="form-check-input" checked>
+            </p>
+            <p>Display note names
+              <input type="checkbox" id="showName" class="form-check-input" checked>
+              Use &flat; flats <input type="checkbox" id="showFlats" class="form-check-input">
+            </p>
+            <p>MIDI Input Port(s)
+              <select id="midiDevice">
+              </select>
+            </p>
+          </div>
         </div>
       </main>
-      <footer class="row" class="fs-6">
-        <div class="col-12 text-center">
+      <footer class="row">
+        <div class="col-12 text-center pt-2 border-top" style="font-size:0.85rem">
           <p>Originally designed by <a href="https://www.federicopepe.com" target="_blank">Federico Pepe</a>, Ableton Certified Trainer with p5.js and webmidi.js.<br />This is an open source project available on <a href="https://github.com/federico-pepe/ableton-push-learn" target="_blank">GitHub</a>. Feel free to contribute.</p>
           <p>This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
         </div>
