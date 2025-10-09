@@ -1,3 +1,6 @@
+// Import tonal.js
+const tonal = window.Tonal;
+
 /*
  * Canvas Selectors
  */
@@ -17,21 +20,24 @@ let noteArray = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
  */
 let root = 'C',
     octave,
-    midiShift = 2, // This shift ensures the note range is between C-2 and G8 (e.g., C3 = MIDI 60)
-    refNote,               // Reference note used to update and redraw the grid
-    midiNotes = [];  // Array to store currently active MIDI note numbers
+    midiShift = 2,          // This shift ensures the note range is between C-2 and G8 (e.g., C3 = MIDI 60)
+    refNote,                // Reference note used to update and redraw the grid
+    midiNotes = [];         // Array to store currently active MIDI note numbers
+    midiNotesName = [];     // Array to store currently activi MIDI note names (needed for Chord Detection)
 
 
 /*
  * UI elements and state flags
  */
-let selectRoot,               // Dropdown for root note selection
-    selectScale,              // Dropdown for scale selection
-    checkbox,                 // Checkbox element for fixed scale mode
-    fixed = true,     // Flag indicating whether the scale is fixed
-    checkNames,               // Checkbox element for toggling display of note names
-    showNames = true, // Flag for showing note names on pads
-    showFlats = false;// Flag for displaying flats instead of sharps
+let selectRoot,                 // Dropdown for root note selection
+    selectScale,                // Dropdown for scale selection
+    checkbox,                   // Checkbox element for fixed scale mode
+    fixed = true,               // Flag indicating whether the scale is fixed
+    checkNames,                 // Checkbox element for toggling display of note names
+    showNames = true,           // Flag for showing note names on pads
+    showFlats = false,          // Flag for displaying flats instead of sharps
+    chordDisplay,               // Chord Detection UI Display
+    currentChordSpan;           // Chord Detection UI
 
 
 /*
@@ -89,6 +95,8 @@ function setup() {
     checkbox = select("#fixed").changed(setFixed);
     checkNames = select("#showName").changed(setDisplayNotes);
     checkFlats = select("#showFlats").changed(setFlats);
+    chordDisplay = document.getElementById('chord-display');
+    currentChordSpan = document.getElementById('current-chord');
 
     window.addEventListener("resize", windowResized);
 
@@ -104,6 +112,22 @@ function setup() {
 function draw() {
     // Redraw the grid on each frame
     drawNotes(refNote);
+    
+    // Chord Detection
+    // Only display chords if more than 2 notes are in the array
+    if (midiNotesName.length > 2) {
+        const detectedChords = tonal.Chord.detect(midiNotesName);
+        if (detectedChords.length > 0) {
+            currentChordSpan.textContent = detectedChords.join(', ');
+            chordDisplay.style.display = 'block';
+        } else {
+            currentChordSpan.textContent = '-';
+            chordDisplay.style.display = 'block';
+        }
+    } else {
+        currentChordSpan.textContent = '-';
+        chordDisplay.style.display = 'none';
+    }
 }
 
 
@@ -166,8 +190,6 @@ canvasElement.addEventListener('click', () => {
         resizeVisualizer(desiredCanvasSize())
     }
 });
-
-
 
 /*
  * Utility functions
@@ -437,11 +459,13 @@ function midiEnabled() {
 function listenToMidi() {
     selectedDevice.addListener("noteon", e => {
         midiNotes.push(e.note.number);
+        midiNotesName.push(tonal.Midi.midiToNoteName(e.note.number));
     });
     selectedDevice.addListener("noteoff", e => {
         var index = midiNotes.indexOf(e.note.number);
         if (index > -1) {
             midiNotes.splice(index, 1);
+            midiNotesName.splice(index, 1);
         }
     });
 }
