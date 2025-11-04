@@ -434,9 +434,12 @@ WebMidi.enable()
     });
 
 let selectedDevice;
+let AbletonMove;
+let AbletonPush;
 
 function midiEnabled() {
     let dropdown = document.getElementById("midiDevice");
+    
     if (WebMidi.inputs.length < 1) {
         console.log("No MIDI Input");
     } else {
@@ -454,6 +457,31 @@ function midiEnabled() {
         selectedDevice = WebMidi.inputs[this.value];
         listenToMidi();
     });
+    
+    // Add a listener for Oct+ and Oct- on Push
+    AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port").addListener("controlchange", e => {
+        console.log(e);
+        if(e.rawValue === 127) {
+            if(e.controller.number === 54) {
+                setOctDown();
+            }
+            if(e.controller.number === 55) {
+                setOctUp();
+            }
+        }
+    });   
+    // Add a listener for Oct+ and Oct- on Move
+    AbletonMove = WebMidi.getInputByName("Ableton Move Live Port").addListener("controlchange", e => {
+        if(e.rawValue === 127) {
+            if(e.controller.number === 54) {
+                setOctDown();
+            }
+            if(e.controller.number === 55) {
+                setOctUp();
+            }
+        }
+    });   
+
 }
 
 function listenToMidi() {
