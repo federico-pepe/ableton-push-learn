@@ -460,7 +460,6 @@ function midiEnabled() {
     
     // Add a listener for Oct+ and Oct- on Push
     AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port").addListener("controlchange", e => {
-        console.log(e);
         if(e.rawValue === 127) {
             if(e.controller.number === 54) {
                 setOctDown();
