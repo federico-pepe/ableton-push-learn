@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container mt-3 text-center">
       <div class="row">
         <div class="col-12">
           <h1>Ableton Push and Move Visualizer</h1>
@@ -41,50 +41,76 @@
           </div>
         </div>
         <div class="row my-2 py-2">
-          <div class="col border-bottom">
-            <h2 class="h4">Options</h2>
+          <div class="col">
+            <h2 class="h4">Settings</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col">
-            <p>Layout:
-              <select id="layoutMode">
+          <div class="col-12 col-sm-3 mx-auto">
+            <div class="form-floating">
+              <select id="layoutMode" class="form-select">
                 <option value="Push" selected>Push</option>
                 <option value="Move">Move</option>
               </select>
-            </p>
-            <p>Root note and scale:
-              <select id="root">
-              </select>
-              <select id="scaleSel">
-              </select>
-            </p>
-            <div id="chord-display" class="position-fixed p-3 rounded-3" role="alert" style="display: none; background: rgba(0, 0, 0, 0.8); color: white; bottom: 20px; right: 20px; z-index: 1000;">
-              Current Chord: <span id="current-chord" class="fw-bold">-</span>
+              <label for="floatingSelect">Layout</label>
             </div>
-            <p>Octave:
-              <button id="plus" class="btn btn-sm btn-outline-dark">+</button>
-              <button id="minus" class="btn btn-sm btn-outline-dark">-</button>
-            </p>
-            <p>Fixed:
-            <input type="checkbox" id="fixed" class="form-check-input" checked>
-            </p>
-            <p>Display note names
-              <input type="checkbox" id="showName" class="form-check-input" checked>
-              Use &flat; flats <input type="checkbox" id="showFlats" class="form-check-input">
-            </p>
-            <p>MIDI Input Port(s)
-              <select id="midiDevice">
-              </select>
-            </p>
           </div>
+          <div class="col-12 col-sm-3 mx-auto">
+            <div class="form-floating">
+              <select id="root" class="form-select">
+              </select>
+              <label for="floatingSelect">Root note</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 mx-auto">
+            <div class="form-floating">
+              <select id="scaleSel" class="form-select">
+              </select>
+              <label for="floatingSelect">Scale</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 mx-auto">
+            <div class="form-floating">
+              <select id="midiDevice" class="form-select">
+              </select>
+              <label for="floatingSelect">MIDI Input Port(s)</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 text-start">
+          <div class="col-12 col-lg-4 mx-auto">
+            <p>Octave:
+              <button id="plus" class="btn btn-light">+</button>
+              <button id="minus" class="btn btn-light">-</button>
+            </p>
+            <div class="form-check form-switch">
+              <input type="checkbox" id="showName" class="form-check-input" checked>
+              <label class="form-check-label" for="showName">
+                Display note names on the grid
+              </label>
+            </div>
+            <div class="form-check form-switch">
+              <input type="checkbox" id="showFlats" class="form-check-input">
+              <label class="form-check-label" for="showFlats">
+                Use &flat; flats instead of #
+              </label>
+            </div>
+            <div class="form-check form-switch">
+              <input type="checkbox" id="fixed" class="form-check-input" checked>
+              <label class="form-check-label" for="fixed">
+                Fixed <br /><span class="small">When Fixed is on, the notes of the pad grid remain in the same position when you change keys, e.g. the bottom-left pad will always play C (unless the key does not contain a C, in which case the pad will play the nearest note to C). When Fixed is off, the notes on the pad grid shift so that the bottom-left pad always plays the root note of the selected key.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div id="chord-display" class="position-fixed p-3 rounded-3" role="alert" style="display: none; background: rgba(0, 0, 0, 0.8); color: white; top: 20px; right: 20px; z-index: 1000;">
+          Detected Chord:<br /> <span id="current-chord" class="fw-bold lead">-</span>
         </div>
       </main>
       <footer class="row">
-        <div class="col-12 text-center py-5 border-top" style="font-size:0.85rem">
+        <div class="col-12 text-center py-5" style="font-size:0.85rem">
           <p class="lead">Originally designed by <a href="https://www.federicopepe.com" target="_blank">Federico Pepe</a>, Ableton Certified Trainer with <a href="https://p5js.org/">p5.js</a>, <a href="https://webmidijs.org/">webmidi.js</a> and <a href="https://tonaljs.github.io/tonal/">tonal.js</a></p>
-          <p></p>This is an open source project available on <a href="https://github.com/federico-pepe/ableton-push-learn" target="_blank">GitHub</a>. Feel free to contribute.</p>
-          <p>This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
+          <p>This is an open source project available on <a href="https://github.com/federico-pepe/ableton-push-learn" target="_blank">GitHub</a>. Feel free to contribute. This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
         </div>
       </footer>
     </div>
