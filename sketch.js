@@ -370,7 +370,7 @@ function setOctDown() {
 
 function setOctUp() {
     octave++;
-    if (octave > 8) {
+    if ((layoutMode === "Push" && octave > 8) || octave > 9) {
         octave--;
     }
     refNote = noteArray.indexOf(root) + (octave * 12);
