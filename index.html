@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,16 +20,63 @@
     <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
 
     <title>Learn how to play Ableton Push and Move</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Frequenze</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Web App</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Max for Live version</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Theme
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item d-flex align-items-center gap-2" href="#" data-bs-theme-value="light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <circle cx="8" cy="8" r="5"/>
+                  <line x1="8" y1="1" x2="8" y2="2" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="8" y1="14" x2="8" y2="15" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="1" y1="8" x2="2" y2="8" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="14" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="2.93" y1="2.93" x2="3.71" y2="3.71" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="12.29" y1="12.29" x2="13.07" y2="13.07" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="13.07" y1="2.93" x2="12.29" y2="3.71" stroke="currentColor" stroke-width="1.5"/>
+                  <line x1="3.71" y1="12.29" x2="2.93" y2="13.07" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                Light
+              </a></li>
+              <li><a class="dropdown-item d-flex align-items-center gap-2" href="#" data-bs-theme-value="dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM3 8a5 5 0 0 1 5-5v10a5 5 0 0 1-5-5z"/>
+                </svg>
+                Dark
+              </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <div class="container mt-3 text-center">
       <div class="row">
         <div class="col-12">
           <h1>Ableton Push and Move Visualizer</h1>
-          <p class="lead">Ableton Push and Move are amazing instruments but many people don't understand how the notes are laid out on their grids. I decided to create this simple visualizer that runs in the browser to help people understand Push and Move's chromatic layouts.</p>
+          <p class="lead">This tool visualizes the chromatic grid layouts of Ableton Push and Move to make their note structure easier to understand and play.</p>
         </div>
       </div>
       <main>
@@ -38,11 +85,6 @@
             <div id="canvas-container" class="d-block text-center">
               <canvas class="p5Canvas"></canvas>
             </div>
-          </div>
-        </div>
-        <div class="row my-2 py-2">
-          <div class="col">
-            <h2 class="h4">Settings</h2>
           </div>
         </div>
         <div class="row">
@@ -83,6 +125,7 @@
               <button id="plus" class="btn btn-light">+</button>
               <button id="minus" class="btn btn-light">-</button>
             </p>
+            <p class="small"><strong>Please note:</strong> When Push or Move are connected to your computer via a USB-C cable, you can use the buttons on your device to move up or down an octave.</p>
             <div class="form-check form-switch">
               <input type="checkbox" id="showName" class="form-check-input" checked>
               <label class="form-check-label" for="showName">
@@ -92,7 +135,7 @@
             <div class="form-check form-switch">
               <input type="checkbox" id="showFlats" class="form-check-input">
               <label class="form-check-label" for="showFlats">
-                Use &flat; flats instead of #
+                Use &flat; flats instead of &sharp; sharps.
               </label>
             </div>
             <div class="form-check form-switch">
@@ -108,9 +151,10 @@
         </div>
       </main>
       <footer class="row">
-        <div class="col-12 text-center py-5" style="font-size:0.85rem">
+        <div class="col-12 text-center pt-5" style="font-size:0.85rem">
           <p class="lead">Originally designed by <a href="https://www.federicopepe.com" target="_blank">Federico Pepe</a>, Ableton Certified Trainer with <a href="https://p5js.org/">p5.js</a>, <a href="https://webmidijs.org/">webmidi.js</a> and <a href="https://tonaljs.github.io/tonal/">tonal.js</a></p>
-          <p>This is an open source project available on <a href="https://github.com/federico-pepe/ableton-push-learn" target="_blank">GitHub</a>. Feel free to contribute. This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
+          <p>This is an open source project available on <a href="https://github.com/federico-pepe/ableton-push-learn" target="_blank">GitHub</a>, feel free to contribute.</p>
+          <p>This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
         </div>
       </footer>
     </div>
@@ -121,6 +165,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tonal/browser/tonal.min.js"></script>
     <script src="scales.js"></script>
     <script src="sketch.js"></script>
+    <script src="theme-chooser.js"></script>
     <script>
       // Update the MIDI UI if WebMIDI is not supported.
       document.addEventListener("DOMContentLoaded", function() {
@@ -141,8 +186,6 @@
         }
       });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -51,6 +51,18 @@ let isExpanded = false,
     isHovered = false;
 
 /*
+ * UI Colors
+*/
+
+let root_color,
+    active_color,
+    idle_color,
+    played_color,
+    border_color,
+    text_color;
+
+
+/*
  * This stuff all pertains to the sizing of the canvas
  */
 const screenSize = () => ({
@@ -110,6 +122,7 @@ function setup() {
 }
 
 function draw() {
+    getColorsFromCSS();
     // Redraw the grid on each frame
     drawNotes(refNote);
     
@@ -128,8 +141,9 @@ function draw() {
         currentChordSpan.textContent = '-';
         chordDisplay.style.display = 'none';
     }
-}
 
+
+}
 
 /*
  * Adjusts canvas sizes
@@ -248,19 +262,19 @@ function drawNotes(note) {
             }
             if (notes[n]) {
                 if (notes[n].note === root) {
-                    fill(250, 179, 174);
+                    fill(root_color);
                 } else if (scala.indexOf(notes[n].note) >= 0) {
-                    fill(255);
+                    fill(active_color);
                 } else {
-                    fill(167, 173, 178);
+                    fill(idle_color);
                 }
                 if (midiNotes.includes(notes[n].midi)) {
-                    fill(0, 255, 0);
+                    fill(played_color);
                 }
                 rect(x, y, gridW, gridH);
                 if (showNames) {
                     textAlign(CENTER, CENTER);
-                    fill(0);
+                    fill(text_color);
                     let o = notes[n].note;
                     if (showFlats) {
                         let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -285,19 +299,19 @@ function drawNotes(note) {
                 let y = height - gridH - r * gridH; // Bottom row (r=0) is at y = height - gridH
                 if (notes[currentNote]) {
                     if (notes[currentNote].note === root) {
-                        fill(250, 179, 174);
+                        fill(root_color);
                     } else if (scala.indexOf(notes[currentNote].note) >= 0) {
-                        fill(255);
+                        fill(active_color);
                     } else {
-                        fill(167, 173, 178);
+                        fill(idle_color);
                     }
                     if (midiNotes.includes(notes[currentNote].midi)) {
-                        fill(0, 255, 0);
+                        fill(played_color);
                     }
                     rect(x, y, gridW, gridH);
                     if (showNames) {
                         textAlign(CENTER, CENTER);
-                        fill(0);
+                        fill(text_color);
                         let o = notes[currentNote].note;
                         if (showFlats) {
                             let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -409,8 +423,9 @@ function Note(midi, note, octave) {
 }
 
 function createNotes() {
+    let noteDisplay = ['C', 'C# / Db', 'D', 'D# / Eb', 'E', 'F', 'F# / Gb', 'G', 'G# / Ab', 'A', 'A# / Bb', 'B'];
     for (let i = 0; i < noteArray.length; i++) {
-        selectRoot.option(noteArray[i]);
+        selectRoot.option(noteDisplay[i], noteArray[i]);
     }
     for (let i = 0; i < scales.length; i++) {
         selectScale.option(scales[i].name, i);
@@ -497,3 +512,11 @@ function listenToMidi() {
     });
 }
 
+function getColorsFromCSS() {
+    root_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_root').trim();
+    active_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_active').trim();
+    idle_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_idle').trim();
+    played_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_played').trim();
+    border_color = getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim();
+    text_color = getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
+}
