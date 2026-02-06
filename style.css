@@ -31,9 +31,9 @@ canvas.expanded {
 }
 
 [data-bs-theme="light"] {
-  --rect_root: #4e33ff;;
+  --rect_root: rgba(129, 190, 250, 1);
   --rect_active:rgba(230, 230, 230, 1);
-  --rect_idle:rgba(78, 82, 89, 1);
+  --rect_idle:rgba(151, 155, 164, 1);
   --rect_played: rgba(20, 219, 80, 1);
   --border-color: rgba(0, 0, 0, 1);
   --text-color: rgba(0, 0, 0, 1);
