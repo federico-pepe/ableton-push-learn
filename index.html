@@ -3,8 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ableton Push and Move Visualizer: Learn how to play Push and Move in chromatic mode</title>
+    <!--  Essential META Tags -->
+    <meta property="og:title" content="Ableton Push and Move Visualizer">
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://visualizer.frequenze.org">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:description" content="This tool visualizes the chromatic note layouts of Ableton Push and Move, helping you understand how notes are arranged across their grids.">
+    <meta property="og:site_name" content="Ableton Push and Move Visualizer &bull; Frequenze">
+
     <script src="https://cdn.jsdelivr.net/npm/p5@2.0.5/lib/p5.min.js"></script>
-        
     <!-- Polyfill: Check for WebMIDI support and provide a dummy function if unsupported -->
     <script>
       window.MIDI_SUPPORTED = !!navigator.requestMIDIAccess;
@@ -16,10 +27,7 @@
         console.warn("WebMIDI is not supported by this browser. MIDI features will be disabled.");
       }
     </script>
-    
     <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
-
-    <title>Learn how to play Ableton Push and Move</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -34,16 +42,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Web App</a>
+            <a class="nav-link active" aria-current="page" href="index.html">Web App</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Max for Live device</a>
+            <a class="nav-link" href="max-for-live.html">Max for Live device</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Help and Support</a>
+            <a class="nav-link" href="help.html">Help and Support</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -138,7 +146,7 @@
       </main>
     </div>
     <div class="bg-light-subtle">
-      <div class="container mt-5 pt-5">
+      <div class="container mt-5 py-4">
         <footer class="row">
           <div class="col-3">
             <ul class="list-inline fs-4">

@@ -280,7 +280,9 @@ function drawNotes(note) {
                         let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
                         o = flats[noteArray.indexOf(o)];
                     }
+                    noStroke();
                     text(o + notes[n].octave, x + gridW / 2, y + gridH / 2);
+                    stroke(border_color);
                 }
             }
             n++;
@@ -317,7 +319,9 @@ function drawNotes(note) {
                             let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
                             o = flats[noteArray.indexOf(o)];
                         }
+                        noStroke();
                         text(o + notes[currentNote].octave, x + gridW / 2, y + gridH / 2);
+                        stroke(border_color);
                     }
                 }
             }

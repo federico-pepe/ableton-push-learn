@@ -22,12 +22,12 @@ canvas.expanded {
 }
 
 [data-bs-theme="dark"] {
-  --rect_root: rgba(255, 237, 91, 1);
-  --rect_active:rgba(230, 230, 230, 1);
-  --rect_idle:rgba(78, 82, 89, 1);
+  --rect_root: rgba(165, 34, 50, 1);
+  --rect_active:rgba(71, 73, 84, 1);
+  --rect_idle:rgba(22, 23, 28, 1);
   --rect_played: rgba(20, 219, 80, 1);
   --border-color: rgba(0, 0, 0, 1);
-  --text-color: rgba(0, 0, 0, 1);
+  --text-color: rgba(175, 176, 184, 1);
 }
 
 [data-bs-theme="light"] {
