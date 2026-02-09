@@ -45,7 +45,7 @@
         <span class="bi bi-list"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.html">Web App</a>
           </li>
@@ -153,10 +153,10 @@
         <footer class="row">
           <div class="col-3">
             <ul class="list-inline fs-4">
-              <li class="list-inline-item"><a href="" class="bi bi-youtube"></a></li>
-              <li class="list-inline-item"><a href="" class="bi bi-instagram"></a></li>
-              <li class="list-inline-item"><a href="" class="bi bi-tiktok"></a></li>
-              <li class="list-inline-item"><a href="" class="bi bi-facebook"></a></li>
+              <li class="list-inline-item"><a href="https://www.youtube.com/@frequenze_academy" class="bi bi-youtube" target="_blank"></a></li>
+              <li class="list-inline-item"><a href="https://www.instagram.com/frequenze_academy" class="bi bi-instagram" target="_blank"></a></li>
+              <li class="list-inline-item"><a href="https://tiktok.com/@frequenze_academy" class="bi bi-tiktok" target="_blank""></a></li>
+              <li class="list-inline-item"><a href="https://www.facebook.com/frequenze_academy" class="bi bi-facebook" target="_blank"></a></li>
             </ul>
           </div>
           <div class="col-6 text-center" style="font-size:0.85rem">
@@ -189,7 +189,8 @@
             
             // Create a new <small> element for the note
             var noteEl = document.createElement("small");
-            noteEl.textContent = "WebMIDI is supported in Edge, Chrome, Opera, and Firefox browsers.";
+            noteEl.textContent = "⛔️ WebMIDI is supported in Edge, Chrome, Opera, and Firefox browsers. ⛔️";
+            noteEl.classList.add("text-danger",);
             
             // Append a line break and the note element right after the select element
             midiSelect.parentNode.appendChild(document.createElement("br"));
