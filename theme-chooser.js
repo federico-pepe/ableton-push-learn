@@ -53,17 +53,29 @@
     })
 
     window.addEventListener('DOMContentLoaded', () => {
-        showActiveTheme(getPreferredTheme())
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        const currentTheme = getPreferredTheme();
 
-        document.querySelectorAll('[data-bs-theme-value]')
-        .forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
-            e.preventDefault()
-            const theme = toggle.getAttribute('data-bs-theme-value')
-            setStoredTheme(theme)
-            setTheme(theme)
-            showActiveTheme(theme, true)
-            })
-        })
-    })
-    })()
+        // 1. Set initial state of the checkbox
+        if (themeSwitcher) {
+            themeSwitcher.checked = currentTheme === 'dark';
+
+            // 2. Listen for the toggle change
+            themeSwitcher.addEventListener('change', () => {
+                const newTheme = themeSwitcher.checked ? 'dark' : 'light';
+                setStoredTheme(newTheme);
+                setTheme(newTheme);
+            });
+        }
+
+        // Optional: Keep the theme synced if system preferences change
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            const storedTheme = getStoredTheme();
+            if (!storedTheme) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                setTheme(newTheme);
+                if(themeSwitcher) themeSwitcher.checked = e.matches;
+            }
+        });
+    });
+})()
