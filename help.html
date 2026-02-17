@@ -17,7 +17,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand" href="#">Frequenze</a>
+      <a class="navbar-brand" href="https://visualizer.frequenze.org">Frequenze</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="bi bi-list"></span>
       </button>
@@ -53,11 +53,169 @@
           <h2 class="fw-lighter">Ableton Push and Move Visualizer</h2>
         </div>
       </div>
-      <main>
-        <div class="row">
+      <main class="text-start">
+        <div class="row my-5">
           <div class="col-12 py-2">
-            <div id="canvas-container" class="d-block text-center">
+            <h2 class="text-center special-gothic-expanded-one-regular mb-5">Video How-To</h2>
+            <h2 class="text-center special-gothic-expanded-one-regular mb-5">FAQ</h2>
+            <div class="accordion accordion-flush" id="accordionFAQ">
+            <!-- Setup -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+                  Set up Ableton Push and Ableton Move correctly
+                </button>
+              </h2>
+              <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>Both the web app and the Max for Live device are designed to be used with the standard Ableton Push and Ableton Move configuration in chromatic mode. Before you begin, make sure you have them set up correctly:</p>
+                  <h3 class="h4">Ableton Push</h3>
+                  <ol>
+                    <li>Select the <kbd>Scale</kbd> button</li>
+                    <li>Use the first knob on the left to ensure that the layout is set to <kbd>4ths</kbd></li>
+                    <li>Use the first button on the left below the screen to select <kbd>Chromatic</kbd></li>
+                  </ol>
+                  <p><em>Optional</em></p>
+                  <ol>
+                    <li>Select the key of C Major</li>
+                    <li>Leave the Fixed checkbox set to OFF</li>
+                  </ol>
+                  <img src="images/faq/Ableton-Push-Configuration-Chromatic-Mode.png" class="img-fluid mb-3 img-thumbnail" alt="Ableton Push display with the Scale button active. The layout is set to fourths, the key is C, and the selected scale is Major. A list of other available scales appears across the screen, including Minor, Dorian, Mixolydian, Lydian, Phrygian, Locrian, Whole Tone, Pentatonic, Blues, Harmonic Minor, Melodic Minor, and others. The bottom left shows “In Key: Chromatic.” The “Fixed” checkbox in the bottom right is unchecked." />
+                  <p>When set up correctly, the grid design on Push should be identical to that of the Visualizer.</p>
+                  <h3 class="mt-3 h4">Ableton Move</h3>
+                  <ol>
+                    <li>Open a set and select a melodic instrument</li>
+                    <li>Hold the <kbd>Shift</kbd> key and press the ninth button from the left on the step sequencer. <br /><img src="images/faq/Ableton-Move-Scale-button.png" class="img-fluid my-3 img-thumbnail" alt="A photo of the ninth button of the step sequencer on Move." /></li>
+                    <li>Select <kbd>Chromatic</kbd></li>
+                    <li>Optional: Select the key of C Major</li>
+                  </ol>
+                  <img src="images/faq/Ableton-Move-Set-Chromatic.png" class="img-fluid img-thumbnail" alt="Ableton Move display with the Chromatic option set. The scale selected is C Major" />
+                </div>
+              </div>
             </div>
+            <!-- Options-->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                  Understand all the options available in the Visualizer
+                </button>
+              </h2>
+              <div id="collapse-2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <ul>
+                    <li><strong>Layout</strong>: select between Push (8x8 grid) or Move (8x4 grid)</li>
+                    <li><strong>Windows Size<sup>*</sup></strong>: use this option to make the Visualizer window smaller (S) or bigger (L). Default: M</li>
+                    <li><strong>Display note names</strong>: enabled by default, it shows the note names on the Visualizer</li>
+                    <li><strong>Use &flat; flats instead of &sharp; sharps</strong>: changes the display of notes on the Visualizer grid to show flats instead of sharps. This only works if the "Display note names" option is enabled.</li>
+                    <li><strong>Fixed Grid</strong>: available only on Push. When Fixed is on, the notes of the pad grid remain in the same position when you change keys, e.g. the bottom-left pad will always play C (unless the key does not contain a C, in which case the pad will play the nearest note to C). When Fixed is off, the notes on the pad grid shift so that the bottom-left pad always plays the root note of the selected key. This option is not automatically updated on Push. If you change it, remember to set it on the device by pressing the Scale button.</li>
+                  </ul>
+                  <p>The web app offers additional options for choosing the root note and scale. This is because in the Max for Live version, the device automatically follows the settings defined by the clip (Scale Awareness). The web app also features a menu for selecting the MIDI input port in order to receive MIDI signals from devices.</p>
+                  <small>* Max for Live only</small>
+                </div>
+              </div>
+            </div>
+            <!-- MacOS-->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                  How to send MIDI messages from Push and Move to the web app (macOS)
+                </button>
+              </h2>
+              <div id="collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>In order to send MIDI messages from Ableton Push and Ableton Move to the web app, you need to set them to "Control Live mode" and use a virtual MIDI card to route these signals internally on your computer. If you want to use the devices in Standalone Mode, you need a MIDI interface connected to your computer. See the <a href="#mac-push-3-standalone">instructions below</a>.</p>
+                  <p class="bg-warning-subtle p-2">⚠️ WebMIDI is supported in Edge, Chrome, Opera, and Firefox browsers.</p>
+                  <h3 class="h4">Mac setup</h3>
+                  <ol>
+                    <li>On your Mac go to <code>Applications > Utility</code> and open <strong>Audio MIDI Setup</strong></li>
+                    <li>Make sure that you see the MIDI Studio Window. You can use the <kbd>&#x2318; 2</kbd> shortcut</li>
+                    <li>Double click on <strong>IAC Driver</strong></li>
+                    <li>Make sure that Device is online is selected <br /> <img src="images/faq/macOS-IAC-Driver.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the IAC Driver window. The option Device is online is selected" /></li>
+                    <li>Connect your Ableton Push or Ableton Move to your computer, and set them in "Control Live" mode</li>
+                    <li>Open Ableton Live, in the MIDI Preference tab make sure that the IAC Driver is selected in the MIDI Input ports with the "Track" option selected. <br /> <img src="images/faq/macOS-IAC-Driver-Settings.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI Tab preferences in Ableton Live." /></li>
+                    <li>On a MIDI Track set the <strong>MIDI From</strong> to <code>From Push</code> or <code>Move Input (Ableton Move (Live Port))</code>.</li>
+                    <li>Set the <strong>MIDI Out</strong> to <code>IAC Driver (Bus 1)</code> and then set <strong>Monitor</strong> to IN <br /> <img src="images/faq/MIDI-Routing-Ableton.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI I/O Options on a MIDI track in Ableton Live. The dropdown MIDI from is set to From Push, Monitor is set to IN and MIDI to is set to IAC Driver" /></li>
+                    <li>Now open the Web App and in the MIDI Input Port(s) dropdown select IAC Driver Bus 1</li>
+                  </ol>
+                  <h3 class="h4" id="mac-push-3-standalone">Use Push 3 Standalone with the Web App</h3>
+                  <ol>
+                    <li>Connect your MIDI interface to your computer and install any drivers required for it to work.</li>
+                    <li>Connect the TRS Type A > MIDI DIN adapter to the MIDI Out port on your Ableton Push.</li>
+                    <li>Open Push's MIDI preferences, select Output with the first knob on the left, select <kbd>Ableton Push 3 External Port</kbd></li>
+                    <li>With the second knob, and make sure the <kbd>Track</kbd> checkbox is selected.</li>
+                    <li>Now open the Web App and in the MIDI Input Port(s) dropdown select your MIDI Interface</li>
+                  </ol>
+                  <img src="images/faq/Ableton-Push-3-External-Port.png" class="img-fluid img-thumbnail" alt="Screenshot of the MIDI preferences on Ableton Push 3 Standalone. The “Output” section is selected, showing “Ableton Push 3 External Port” as the chosen port. Under the available options, only “Track” is enabled, while “Sync” and “Remote” are turned off." />
+                </div>
+              </div>
+            </div>
+            <!-- Windows -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                  How to send MIDI messages from Push and Move to the web app (Windows)
+                </button>
+              </h2>
+              <div id="collapse-4" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <!-- Max for Live -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                  How to install the Max for Live device
+                </button>
+              </h2>
+              <div id="collapse-5" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>Once you have downloaded the device, open the download folder on your computer. Extract the content from the ZIP, locate the .amxd file, and drag it into the User Library in Ableton Live.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Chord detection -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                  How does chord detection work?
+                </button>
+              </h2>
+              <div id="collapse-6" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>The chord recognition feature is automatically managed by the <a href="https://tonaljs.github.io/tonal/docs/groups/chords#chorddetect" target="_blank">tonal.js</a> library.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Octave-->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
+                  The Octave Up/Down buttons are not working
+                </button>
+              </h2>
+              <div id="collapse-7" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>The Octave Up and Octave Down buttons <u>are not supported</u> in the Max for Live device.</p>
+                  <p>In the web app, however, these buttons are supported. Make sure that your Move and Push are set to Control Live Mode. Keep the web app configured as described above, and ensure that one of the following ports is displayed (but not selected) in the MIDI Input Port(s) dropdown: <code>Ableton Push 3 Live Port</code> or <code>Ableton Move Live Port</code>. If those ports don't show up, close the browser window and re-open the page.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Contact us-->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-99" aria-expanded="false" aria-controls="collapse-99">
+                  How can I get in touch with you?
+                </button>
+              </h2>
+              <div id="collapse-99" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                  <p>Send us an email: <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#102;&#114;&#101;&#113;&#117;&#101;&#110;&#122;&#101;&#046;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#064;&#102;&#114;&#101;&#113;&#117;&#101;&#110;&#122;&#101;&#046;&#111;&#114;&#103;</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </main>

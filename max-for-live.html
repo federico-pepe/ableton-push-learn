@@ -18,7 +18,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand" href="#">Frequenze</a>
+      <a class="navbar-brand" href="https://visualizer.frequenze.org">Frequenze</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="bi bi-list"></span>
       </button>
@@ -47,26 +47,32 @@
       </div>
     </div>
   </nav>
-    <div class="container mt-3 text-center">
+    <div class="container my-3 text-center">
       <div class="row">
         <div class="col-12 mt-3">
           <h1 class="display-4 special-gothic-expanded-one-regular">Max for Live Device</h1>
           <h2 class="fw-lighter">Ableton Push and Move Visualizer</h2>
-          <img src="m4l-web-icon.svg" alt="Max for Live Logo" class="img-fluid my-3 " style="max-width: 200px;"/>
+          <img src="images/m4l-web-icon.svg" alt="Max for Live Logo" class="img-fluid my-3 " style="max-width: 200px;"/>
         </div>
       </div>
       <main>
         <div class="row my-5 justify-content-center">
           <div class="col-12 col-md-6 py-2">
             <img src="images/Ableton-Push-Move-Visualizer-Max-for-Live.jpg" class="img-fluid mb-4" style="max-width: 400px" alt="">
-            <p>The Push and Move Visualizer is now available in a practical Max for Live format. <br /> Add this MIDI effect on a track and use the visualizer inside your Ableton Live set. Compared to the web-app version there are some benefits:
-                <ul class="list-unstyled">
-                    <li>Easier routing</li>
-                    <li>Follow Live's theme color automatically</li>
-                    <li>Follow Live's Root/Key automatically</li>
-                    <li>Control the device from Push and Move</li>
-                </ul>
+            <p>The Push and Move Visualizer is now available as a <strong>Max for Live device</strong>.<br />You can load it onto a MIDI track and use the visualizer directly inside your Ableton Live set. The features are identical to those of the web app, with a few added benefits:
+            <ul class="list-unstyled">
+                <li>Easier setup and routing</li>
+                <li>No need for an internet connection or web browser</li>
+                <li>Automatically follows Live's theme color</li>
+                <li>Automatically follows your set's key and scale</li>
+                <li>Control the device with Push and Move's knobs</li>
+            </ul>
             </p>
+          </div>
+          <div class="col-12">
+            <img src="images/Push-Screen.png" alt="A screenshoft of a Push screen with the Push and Move Visualizer displayed" class="img-fluid">
+          </div>
+          <div class="col-12 col-md-6 py-2">
             <h4 class="mt-5 special-gothic-expanded-one-regular">System requirements</h4>
             <p>Ableton Live 12<br />Max for Live</p>
             <p class="fw-bold">Optional</p>
@@ -76,7 +82,7 @@
         <div class="row justify-content-center mb-5">
             <div class="col-12 col-md-6">
                 <h2 class="special-gothic-expanded-one-regular">Buy or download the device</h2>
-                <p>All versions are <strong><u>exactly the same</u></strong>. This is a learning tool, and we want it to be accessible to everyone. That’s why we offer three options: use it for free, support the project with a fixed price, or pay what you want if you’d like to contribute more.</p>
+                <p>All versions are <strong><u>exactly the same</u></strong>. This is a learning tool, and we want it to be accessible to everyone. That's why we offer three options: use it for free, support the project with a fixed price, or pay what you want if you'd like to contribute more.</p>
             </div>
         </div>
         <div class="row">
@@ -98,7 +104,7 @@
                 <h4>Paid Version</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title">&euro; 15.00 <small style="font-size: 40%;" class="text-muted">+ VAT</small></h1 >
+                <h1 class="card-title">&euro; 14.99 <small style="font-size: 40%;" class="text-muted">+ VAT</small></h1 >
                 <p class="card-text">Support the project by paying the set price for this device and helping us continue its development. VAT is calculated automatically at checkout.</p>
                 <a href="#" class="btn btn-lg btn-block btn-primary">Download</a>
             </div>
@@ -112,9 +118,16 @@
             <div class="card-body">
                 <h1 class="card-title">Up to you</h1 >
                 <p class="card-text">We want everyone to contribute in a way that works for them, paying whatever amount they feel is appropriate.</p>
-                <a href="#" class="btn btn-lg btn-block btn-primary">Download</a>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1T03ubFDpvWQs5kUwFu1G4iJ"
+                  publishable-key="pk_live_51R8b0eFDpvWQs5kUdlq8iLgQv9KytrCtKvHO1RBIfKrVRTy0OfnU4sM1o4Wj2B32jupyNtqnoDNKLNAoC4qkixUA00cFJrjCBa"
+                >
+                </stripe-buy-button>
             </div>
             </div>
+          </div>
+          <div class="col-12 mt-2">
+            <p><em>Secure payment powered by Stripe.</em></p>
           </div>
         </div>
       </main>
@@ -144,5 +157,7 @@
     </div>
     <script src="theme-chooser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+     <!-- STRIPE -->
+     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   </body>
 </html>

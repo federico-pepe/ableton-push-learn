@@ -36,11 +36,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W4GBQN68');</script>
+    <!-- End Google Tag Manager -->
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand" href="#">Frequenze</a>
+      <a class="navbar-brand" href="https://visualizer.frequenze.org">Frequenze</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="bi bi-list"></span>
       </button>
@@ -91,28 +100,28 @@
                 <option value="Push" selected>Push</option>
                 <option value="Move">Move</option>
               </select>
-              <label for="floatingSelect">Layout</label>
+              <label for="layoutMode">Layout</label>
             </div>
           </div>
           <div class="col-12 col-sm-3 mx-auto">
             <div class="form-floating">
               <select id="root" class="form-select">
               </select>
-              <label for="floatingSelect">Root note</label>
+              <label for="root">Root note</label>
             </div>
           </div>
           <div class="col-12 col-sm-3 mx-auto">
             <div class="form-floating">
               <select id="scaleSel" class="form-select">
               </select>
-              <label for="floatingSelect">Scale</label>
+              <label for="scaleSel"">Scale</label>
             </div>
           </div>
           <div class="col-12 col-sm-3 mx-auto">
             <div class="form-floating">
               <select id="midiDevice" class="form-select">
               </select>
-              <label for="floatingSelect">MIDI Input Port(s)</label>
+              <label for="midiDevice">MIDI Input Port(s)</label>
             </div>
           </div>
         </div>
@@ -126,7 +135,7 @@
             <div class="form-check form-switch">
               <input type="checkbox" id="showName" class="form-check-input" checked>
               <label class="form-check-label" for="showName">
-                Display note names on the grid
+                Display note names
               </label>
             </div>
             <div class="form-check form-switch">
@@ -138,7 +147,7 @@
             <div class="form-check form-switch">
               <input type="checkbox" id="fixed" class="form-check-input" checked>
               <label class="form-check-label" for="fixed">
-                Fixed <br /><span class="small">When Fixed is on, the notes of the pad grid remain in the same position when you change keys, e.g. the bottom-left pad will always play C (unless the key does not contain a C, in which case the pad will play the nearest note to C). When Fixed is off, the notes on the pad grid shift so that the bottom-left pad always plays the root note of the selected key.</span>
+                Fixed grid
               </label>
             </div>
           </div>
@@ -200,5 +209,18 @@
       });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W4GBQN68"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Iubenda -->
+    <script type="text/javascript">
+    var _iub = _iub || [];
+    _iub.csConfiguration = {"siteId":4424668,"cookiePolicyId":79110629,"storage":{"useSiteId":true}};
+    _iub.csLangConfiguration = {"en":{"cookiePolicyId":79110629}};
+    </script>
+    <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/4424668.js"></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
   </body>
 </html>

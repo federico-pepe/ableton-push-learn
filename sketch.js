@@ -350,7 +350,7 @@ function setDisplayNotes() {
         showNames = false;
         document.getElementById("showFlats").disabled = true;
     }
-    console.log(select("#showFlats").disabled);
+    //console.log(select("#showFlats").disabled);
     refNote = noteArray.indexOf(root) + (octave * 12);
 }
 
@@ -438,7 +438,7 @@ function createNotes() {
         let newNote = new Note(i, noteArray[i % 12], floor(i / 12));
         notes.push(newNote);
     }
-    console.log(notes);
+    //console.log(notes);
 }
 
 
@@ -454,10 +454,13 @@ WebMidi.enable()
 
 let selectedDevice;
 let AbletonMove;
-let AbletonPush;
+let AbletonPush; 
 
 function midiEnabled() {
     let dropdown = document.getElementById("midiDevice");
+
+    // In the midiEnabled() function, add this:
+    console.log("Available MIDI inputs:", WebMidi.inputs.map(input => input.name));
     
     if (WebMidi.inputs.length < 1) {
         console.log("No MIDI Input");
@@ -476,29 +479,32 @@ function midiEnabled() {
         selectedDevice = WebMidi.inputs[this.value];
         listenToMidi();
     });
-    
-    // Add a listener for Oct+ and Oct- on Push
-    AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port").addListener("controlchange", e => {
-        if(e.rawValue === 127) {
-            if(e.controller.number === 54) {
-                setOctDown();
+
+    // --- Push 3 Logic ---
+    AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port");
+    if (AbletonPush) {
+        console.log("Push 3 detected");
+        AbletonPush.addListener("controlchange", e => {
+            if (e.rawValue === 127) {
+                if (e.controller.number === 54) setOctDown();
+                if (e.controller.number === 55) setOctUp();
             }
-            if(e.controller.number === 55) {
-                setOctUp();
+        });
+    }
+    // --- Move Logic ---
+    AbletonMove = WebMidi.getInputByName("Ableton Move Live Port");
+    if (AbletonMove) {
+        console.log("Move detected");
+        AbletonMove.addListener("controlchange", e => {
+            //console.log("Move CC:", e.controller.number, "Value:", e.rawValue);
+            if (e.rawValue === 127) {
+                if (e.controller.number === 54) setOctDown();
+                if (e.controller.number === 55) setOctUp();
             }
-        }
-    });   
-    // Add a listener for Oct+ and Oct- on Move
-    AbletonMove = WebMidi.getInputByName("Ableton Move Live Port").addListener("controlchange", e => {
-        if(e.rawValue === 127) {
-            if(e.controller.number === 54) {
-                setOctDown();
-            }
-            if(e.controller.number === 55) {
-                setOctUp();
-            }
-        }
-    });   
+        });
+    } else {
+        console.log("Move not detected in WebMidi.inputs");
+    }
 
 }
 
