@@ -21,7 +21,7 @@ let scales = [
     notes: [2, 3, 5, 7, 9, 10]
   },
   {
-    name: 'Mixolidian',
+    name: 'Mixolydian',
     notes: [2, 4, 5, 7, 9, 10]
   },
   {

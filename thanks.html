@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ableton Push and Move Visualizer: Learn how to play Push and Move in chromatic mode</title>
     <!--  Essential META Tags -->
     <meta property="og:title" content="Ableton Push and Move Visualizer">
     <meta property="og:type" content="website" />
@@ -14,20 +13,7 @@
     <!--  Non-Essential, But Recommended -->
     <meta property="og:description" content="Learn how to play in Chromatic Mode on Ableton Push and Ableton Move with this free web app. Also available as a Max for Live device">
     <meta property="og:site_name" content="Ableton Push and Move Visualizer &bull; Frequenze">
-
-    <script src="https://cdn.jsdelivr.net/npm/p5@2.0.5/lib/p5.min.js"></script>
-    <!-- Polyfill: Check for WebMIDI support and provide a dummy function if unsupported -->
-    <script>
-      window.MIDI_SUPPORTED = !!navigator.requestMIDIAccess;
-      if (!window.MIDI_SUPPORTED) {
-        navigator.requestMIDIAccess = function(options) {
-          // Return a rejected promise to prevent errors in libraries expecting this function
-          return Promise.reject(new Error("WebMIDI is not supported by this browser"));
-        };
-        console.warn("WebMIDI is not supported by this browser. MIDI features will be disabled.");
-      }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
+    <title>About &bull; Ableton Push and Move Visualizer</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -36,7 +22,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -44,7 +29,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-W4GBQN68');</script>
     <!-- End Google Tag Manager -->
-
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -54,9 +38,9 @@
         <span class="bi bi-list"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0">
+        <ul class="navbar-nav mb-2 mb-lg-0 justi">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Web App</a>
+            <a class="nav-link" href="index.html">Web App</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="max-for-live.html">Max for Live device</a>
@@ -78,84 +62,15 @@
       </div>
     </div>
   </nav>
-    <div class="container mt-3 text-center">
+    <div class="container my-5 text-center">
       <div class="row">
         <div class="col-12 mt-3">
-          <h1 class="display-4 special-gothic-expanded-one-regular">Ableton Push and Move Visualizer</h1>
-          <p class="lead">This tool visualizes the chromatic grid layouts of Ableton Push and Move to make their note structure easier to understand and play.</p>
+          <h1 class="display-4 special-gothic-expanded-one-regular">🙌 Thank You 🙌</h1>
+          <p class="my-5"><a href="downloads/Push-Move-Visualizer-v1.0.zip" class="btn btn-primary btn-lg">Click here to download</a></p>
+          <h2 class="my-5 special-gothic-expanded-one-regular">Neel help?</h2>
+          <p>Please read our <a href="help.html">Help and Support page</a></p>
         </div>
       </div>
-      <main>
-        <div class="row">
-          <div class="col-12 py-2">
-            <div id="canvas-container" class="d-block text-center">
-              <canvas class="p5Canvas"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-sm-3 mx-auto">
-            <div class="form-floating">
-              <select id="layoutMode" class="form-select">
-                <option value="Push" selected>Push</option>
-                <option value="Move">Move</option>
-              </select>
-              <label for="layoutMode">Layout</label>
-            </div>
-          </div>
-          <div class="col-12 col-sm-3 mx-auto">
-            <div class="form-floating">
-              <select id="root" class="form-select">
-              </select>
-              <label for="root">Root note</label>
-            </div>
-          </div>
-          <div class="col-12 col-sm-3 mx-auto">
-            <div class="form-floating">
-              <select id="scaleSel" class="form-select">
-              </select>
-              <label for="scaleSel"">Scale</label>
-            </div>
-          </div>
-          <div class="col-12 col-sm-3 mx-auto">
-            <div class="form-floating">
-              <select id="midiDevice" class="form-select">
-              </select>
-              <label for="midiDevice">MIDI Input Port(s)</label>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-2 text-start">
-          <div class="col-12 col-lg-4 mx-auto">
-            <p>Octave:
-              <button id="plus" class="btn btn-light">+</button>
-              <button id="minus" class="btn btn-light">-</button>
-            </p>
-            <p class="small"><strong>Please note:</strong> When Push or Move are connected to your computer via a USB-C cable, you can use the buttons on your device to move up or down an octave.</p>
-            <div class="form-check form-switch">
-              <input type="checkbox" id="showName" class="form-check-input" checked>
-              <label class="form-check-label" for="showName">
-                Display note names
-              </label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" id="showFlats" class="form-check-input">
-              <label class="form-check-label" for="showFlats">
-                Use &flat; flats instead of &sharp; sharps.
-              </label>
-            </div>
-            <div class="form-check form-switch">
-              <input type="checkbox" id="fixed" class="form-check-input" checked>
-              <label class="form-check-label" for="fixed">
-                Fixed grid
-              </label>
-            </div>
-          </div>
-        </div>
-        <div id="chord-display" class="position-fixed p-3 rounded-3" role="alert" style="display: none; background: rgba(0, 0, 0, 0.8); color: white; top: 20px; right: 20px; z-index: 1000;">
-          Detected Chord:<br /> <span id="current-chord" class="fw-bold lead">-</span>
-        </div>
-      </main>
     </div>
     <div class="bg-light-subtle">
       <div class="container mt-5 py-4">
@@ -180,34 +95,7 @@
         </footer>
       </div>
     </div>
-    <div id="canvasBackdrop"></div>
-
-    <!-- Load additional scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/tonal/browser/tonal.min.js"></script>
-    <script src="scales.js"></script>
-    <script src="sketch.js"></script>
     <script src="theme-chooser.js"></script>
-    <script>
-      // Update the MIDI UI if WebMIDI is not supported.
-      document.addEventListener("DOMContentLoaded", function() {
-        if (!window.MIDI_SUPPORTED) {
-          var midiSelect = document.getElementById("midiDevice");
-          if (midiSelect) {
-            midiSelect.innerHTML = "<option>MIDI not supported</option>";
-            midiSelect.disabled = true;
-            
-            // Create a new <small> element for the note
-            var noteEl = document.createElement("small");
-            noteEl.textContent = "⛔️ WebMIDI is supported in Edge, Chrome, Opera, and Firefox browsers. ⛔️";
-            noteEl.classList.add("text-danger",);
-            
-            // Append a line break and the note element right after the select element
-            midiSelect.parentNode.appendChild(document.createElement("br"));
-            midiSelect.parentNode.appendChild(noteEl);
-          }
-        }
-      });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W4GBQN68"

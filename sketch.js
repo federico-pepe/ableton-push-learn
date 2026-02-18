@@ -51,6 +51,18 @@ let isExpanded = false,
     isHovered = false;
 
 /*
+ * UI Colors
+*/
+
+let root_color,
+    active_color,
+    idle_color,
+    played_color,
+    border_color,
+    text_color;
+
+
+/*
  * This stuff all pertains to the sizing of the canvas
  */
 const screenSize = () => ({
@@ -110,6 +122,7 @@ function setup() {
 }
 
 function draw() {
+    getColorsFromCSS();
     // Redraw the grid on each frame
     drawNotes(refNote);
     
@@ -128,8 +141,9 @@ function draw() {
         currentChordSpan.textContent = '-';
         chordDisplay.style.display = 'none';
     }
-}
 
+
+}
 
 /*
  * Adjusts canvas sizes
@@ -248,25 +262,27 @@ function drawNotes(note) {
             }
             if (notes[n]) {
                 if (notes[n].note === root) {
-                    fill(250, 179, 174);
+                    fill(root_color);
                 } else if (scala.indexOf(notes[n].note) >= 0) {
-                    fill(255);
+                    fill(active_color);
                 } else {
-                    fill(167, 173, 178);
+                    fill(idle_color);
                 }
                 if (midiNotes.includes(notes[n].midi)) {
-                    fill(0, 255, 0);
+                    fill(played_color);
                 }
                 rect(x, y, gridW, gridH);
                 if (showNames) {
                     textAlign(CENTER, CENTER);
-                    fill(0);
+                    fill(text_color);
                     let o = notes[n].note;
                     if (showFlats) {
                         let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
                         o = flats[noteArray.indexOf(o)];
                     }
+                    noStroke();
                     text(o + notes[n].octave, x + gridW / 2, y + gridH / 2);
+                    stroke(border_color);
                 }
             }
             n++;
@@ -285,25 +301,27 @@ function drawNotes(note) {
                 let y = height - gridH - r * gridH; // Bottom row (r=0) is at y = height - gridH
                 if (notes[currentNote]) {
                     if (notes[currentNote].note === root) {
-                        fill(250, 179, 174);
+                        fill(root_color);
                     } else if (scala.indexOf(notes[currentNote].note) >= 0) {
-                        fill(255);
+                        fill(active_color);
                     } else {
-                        fill(167, 173, 178);
+                        fill(idle_color);
                     }
                     if (midiNotes.includes(notes[currentNote].midi)) {
-                        fill(0, 255, 0);
+                        fill(played_color);
                     }
                     rect(x, y, gridW, gridH);
                     if (showNames) {
                         textAlign(CENTER, CENTER);
-                        fill(0);
+                        fill(text_color);
                         let o = notes[currentNote].note;
                         if (showFlats) {
                             let flats = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
                             o = flats[noteArray.indexOf(o)];
                         }
+                        noStroke();
                         text(o + notes[currentNote].octave, x + gridW / 2, y + gridH / 2);
+                        stroke(border_color);
                     }
                 }
             }
@@ -332,7 +350,7 @@ function setDisplayNotes() {
         showNames = false;
         document.getElementById("showFlats").disabled = true;
     }
-    console.log(select("#showFlats").disabled);
+    //console.log(select("#showFlats").disabled);
     refNote = noteArray.indexOf(root) + (octave * 12);
 }
 
@@ -409,8 +427,9 @@ function Note(midi, note, octave) {
 }
 
 function createNotes() {
+    let noteDisplay = ['C', 'C# / Db', 'D', 'D# / Eb', 'E', 'F', 'F# / Gb', 'G', 'G# / Ab', 'A', 'A# / Bb', 'B'];
     for (let i = 0; i < noteArray.length; i++) {
-        selectRoot.option(noteArray[i]);
+        selectRoot.option(noteDisplay[i], noteArray[i]);
     }
     for (let i = 0; i < scales.length; i++) {
         selectScale.option(scales[i].name, i);
@@ -419,7 +438,7 @@ function createNotes() {
         let newNote = new Note(i, noteArray[i % 12], floor(i / 12));
         notes.push(newNote);
     }
-    console.log(notes);
+    //console.log(notes);
 }
 
 
@@ -435,10 +454,13 @@ WebMidi.enable()
 
 let selectedDevice;
 let AbletonMove;
-let AbletonPush;
+let AbletonPush; 
 
 function midiEnabled() {
     let dropdown = document.getElementById("midiDevice");
+
+    // In the midiEnabled() function, add this:
+    console.log("Available MIDI inputs:", WebMidi.inputs.map(input => input.name));
     
     if (WebMidi.inputs.length < 1) {
         console.log("No MIDI Input");
@@ -457,29 +479,32 @@ function midiEnabled() {
         selectedDevice = WebMidi.inputs[this.value];
         listenToMidi();
     });
-    
-    // Add a listener for Oct+ and Oct- on Push
-    AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port").addListener("controlchange", e => {
-        if(e.rawValue === 127) {
-            if(e.controller.number === 54) {
-                setOctDown();
+
+    // --- Push 3 Logic ---
+    AbletonPush = WebMidi.getInputByName("Ableton Push 3 Live Port");
+    if (AbletonPush) {
+        console.log("Push 3 detected");
+        AbletonPush.addListener("controlchange", e => {
+            if (e.rawValue === 127) {
+                if (e.controller.number === 54) setOctDown();
+                if (e.controller.number === 55) setOctUp();
             }
-            if(e.controller.number === 55) {
-                setOctUp();
+        });
+    }
+    // --- Move Logic ---
+    AbletonMove = WebMidi.getInputByName("Ableton Move Live Port");
+    if (AbletonMove) {
+        console.log("Move detected");
+        AbletonMove.addListener("controlchange", e => {
+            //console.log("Move CC:", e.controller.number, "Value:", e.rawValue);
+            if (e.rawValue === 127) {
+                if (e.controller.number === 54) setOctDown();
+                if (e.controller.number === 55) setOctUp();
             }
-        }
-    });   
-    // Add a listener for Oct+ and Oct- on Move
-    AbletonMove = WebMidi.getInputByName("Ableton Move Live Port").addListener("controlchange", e => {
-        if(e.rawValue === 127) {
-            if(e.controller.number === 54) {
-                setOctDown();
-            }
-            if(e.controller.number === 55) {
-                setOctUp();
-            }
-        }
-    });   
+        });
+    } else {
+        console.log("Move not detected in WebMidi.inputs");
+    }
 
 }
 
@@ -497,3 +522,11 @@ function listenToMidi() {
     });
 }
 
+function getColorsFromCSS() {
+    root_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_root').trim();
+    active_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_active').trim();
+    idle_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_idle').trim();
+    played_color = getComputedStyle(document.documentElement).getPropertyValue('--rect_played').trim();
+    border_color = getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim();
+    text_color = getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
+}

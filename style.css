@@ -20,3 +20,48 @@ canvas.expanded {
     transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
+.navbar-brand {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -9999px;
+  overflow: hidden;
+  display: inline-block;
+  width: 160px;
+  height: 40px;
+}
+
+[data-bs-theme="dark"] .navbar-brand {
+  background-image: url("images/Frequenze-Horizontal-White@2x.png");
+}
+
+[data-bs-theme="light"] .navbar-brand {
+  background-image: url("images/Frequenze-Horizontal-Black@2x.png");
+}
+.special-gothic-expanded-one-regular {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*
+  Pad Grid colors based on theme switch
+*/
+[data-bs-theme="dark"] {
+  --rect_root: rgba(165, 34, 50, 1);
+  --rect_active:rgba(71, 73, 84, 1);
+  --rect_idle:rgba(22, 23, 28, 1);
+  --rect_played: rgba(20, 219, 80, 1);
+  --border-color: rgba(0, 0, 0, 1);
+  --text-color: rgba(175, 176, 184, 1);
+}
+
+[data-bs-theme="light"] {
+  --rect_root: rgba(129, 190, 250, 1);
+  --rect_active:rgba(230, 230, 230, 1);
+  --rect_idle:rgba(151, 155, 164, 1);
+  --rect_played: rgba(20, 219, 80, 1);
+  --border-color: rgba(0, 0, 0, 1);
+  --text-color: rgba(0, 0, 0, 1);
+}
