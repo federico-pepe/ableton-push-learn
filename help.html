@@ -75,6 +75,9 @@
         <div class="row my-5">
           <div class="col-12 py-2">
             <h2 class="text-center special-gothic-expanded-one-regular mb-5">Video How-To</h2>
+            <div class="mb-5 mx-auto text-center">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5tB4dEFiX7M?si=vo1c5DZEDRc4zG5K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
             <h2 class="text-center special-gothic-expanded-one-regular mb-5">FAQ</h2>
             <div class="accordion accordion-flush" id="accordionFAQ">
             <!-- Setup -->
@@ -86,10 +89,10 @@
               </h2>
               <div id="collapse-1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
                 <div class="accordion-body">
-                  <p>Both the web app and the Max for Live device are designed to be used with the standard Ableton Push and Ableton Move configuration in chromatic mode. Before you begin, make sure you have them set up correctly:</p>
+                  <p>Both the web app and the Max for Live device are designed to be used with the standard Ableton Push and Ableton Move configuration in chromatic mode. Before you begin, make sure you have them set up correctly. Connect Push or Move to your computer with the provided USB-C cable and choose the <strong>Control Live</strong> mode</p>
                   <h3 class="h4">Ableton Push</h3>
                   <ol>
-                    <li>Select the <kbd>Scale</kbd> button</li>
+                    <li>Press the <kbd>Scale</kbd> button</li>
                     <li>Use the first knob on the left to ensure that the layout is set to <kbd>4ths</kbd></li>
                     <li>Use the first button on the left below the screen to select <kbd>Chromatic</kbd></li>
                   </ol>
@@ -102,7 +105,6 @@
                   <p>When set up correctly, the grid design on Push should be identical to that of the Visualizer.</p>
                   <h3 class="mt-3 h4">Ableton Move</h3>
                   <ol>
-                    <li>Open a set and select a melodic instrument</li>
                     <li>Hold the <kbd>Shift</kbd> key and press the ninth button from the left on the step sequencer. <br /><img src="images/faq/Ableton-Move-Scale-button.png" class="img-fluid my-3 img-thumbnail" alt="A photo of the ninth button of the step sequencer on Move." /></li>
                     <li>Select <kbd>Chromatic</kbd></li>
                     <li>Optional: Select the key of C Major</li>
@@ -150,20 +152,22 @@
                     <li>Double click on <strong>IAC Driver</strong></li>
                     <li>Make sure that Device is online is selected <br /> <img src="images/faq/macOS-IAC-Driver.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the IAC Driver window. The option Device is online is selected" /></li>
                     <li>Connect your Ableton Push or Ableton Move to your computer, and set them in "Control Live" mode</li>
-                    <li>Open Ableton Live, in the MIDI Preference tab make sure that the IAC Driver is selected in the MIDI Input ports with the "Track" option selected. <br /> <img src="images/faq/macOS-IAC-Driver-Settings.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI Tab preferences in Ableton Live." /></li>
+                    <li>Open Ableton Live, in the MIDI Preference tab make sure that the IAC Driver is selected in the MIDI Output ports with the "Track" option selected and disabled it in the MIDI Input ports. <br /> <img src="images/faq/macOS-IAC-Driver-Settings.jpg" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI Tab preferences in Ableton Live." /></li>
                     <li>On a MIDI Track set the <strong>MIDI From</strong> to <code>From Push</code> or <code>Move Input (Ableton Move (Live Port))</code>.</li>
-                    <li>Set the <strong>MIDI Out</strong> to <code>IAC Driver (Bus 1)</code> and then set <strong>Monitor</strong> to IN <br /> <img src="images/faq/MIDI-Routing-Ableton.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI I/O Options on a MIDI track in Ableton Live. The dropdown MIDI from is set to From Push, Monitor is set to IN and MIDI to is set to IAC Driver" /></li>
+                    <li>Set the <strong>MIDI Out</strong> to <code>IAC Driver (Bus 1)</code> and then set <strong>Monitor</strong> to IN <br /> <img src="images/faq/MIDI-Routing-Ableton.jpg" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI I/O Options on a MIDI track in Ableton Live. The dropdown MIDI from is set to From Push, Monitor is set to IN and MIDI to is set to IAC Driver" /></li>
                     <li>Now open the Web App and in the MIDI Input Port(s) dropdown select IAC Driver Bus 1</li>
                   </ol>
                   <h3 class="h4" id="mac-push-3-standalone">Use Push 3 Standalone with the Web App</h3>
                   <ol>
                     <li>Connect your MIDI interface to your computer and install any drivers required for it to work.</li>
                     <li>Connect the TRS Type A > MIDI DIN adapter to the MIDI Out port on your Ableton Push.</li>
-                    <li>Open Push's MIDI preferences, select Output with the first knob on the left, select <kbd>Ableton Push 3 External Port</kbd></li>
+                    <li>Open Push's MIDI preferences, select Output with the first knob on the left, select <kbd>Ableton Push 3 External Port</kbd> <br /><img src="images/faq/Ableton-Push-3-External-Port.png" class="img-fluid img-thumbnail" alt="Screenshot of the MIDI preferences on Ableton Push 3 Standalone. The “Output” section is selected, showing “Ableton Push 3 External Port” as the chosen port. Under the available options, only “Track” is enabled, while “Sync” and “Remote” are turned off." /></li>
                     <li>With the second knob, and make sure the <kbd>Track</kbd> checkbox is selected.</li>
+                    <li>On Push select a MIDI Track. Press the Mixer button twice</li>
+                    <li>In the output section, select <kbd>Ableton Push 3 External Port</kbd> <br /><img src="images/faq/Ableton-Push-MIDI-Track-OUT.png" class="img-fluid img-thumbnail my-2" alt="Screenshot of the MIDI I/O Options on a MIDI track on Ableton Push. The I/O is set to Output and the type is set to Ableton Push 3 External Port" /></li>
                     <li>Now open the Web App and in the MIDI Input Port(s) dropdown select your MIDI Interface</li>
                   </ol>
-                  <img src="images/faq/Ableton-Push-3-External-Port.png" class="img-fluid img-thumbnail" alt="Screenshot of the MIDI preferences on Ableton Push 3 Standalone. The “Output” section is selected, showing “Ableton Push 3 External Port” as the chosen port. Under the available options, only “Track” is enabled, while “Sync” and “Remote” are turned off." />
+                  
                 </div>
               </div>
             </div>
