@@ -39,6 +39,27 @@ canvas.expanded {
 [data-bs-theme="light"] .navbar-brand {
   background-image: url("images/Frequenze-Horizontal-Black@2x.png");
 }
+
+#actc {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -9999px;
+  overflow: hidden;
+  display: inline-block;
+  width: 350px;
+  height: 50px;
+}
+
+[data-bs-theme="dark"] #actc {
+  background-image: url("images/ableton_certified_training_center_logo_white_transparent_bg.png");
+}
+
+[data-bs-theme="light"] #actc {
+  background-image: url("images/ableton_certified_training_center_logo_transparent_bg.png");
+}
+
+
 .special-gothic-expanded-one-regular {
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;
