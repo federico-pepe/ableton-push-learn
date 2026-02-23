@@ -33,36 +33,36 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand" href="https://visualizer.frequenze.org">Frequenze</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="bi bi-list"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Web App</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Max for Live device</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="help.html">Help and Support</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item d-flex align-items-center ps-3">
-            <div class="form-check form-switch d-flex align-items-center m-0 p-0">
-              <i class="bi bi-sun-fill me-2"></i>
-              <input class="form-check-input m-0" type="checkbox" role="switch" id="themeSwitcher" style="cursor: pointer; width: 2.5em; height: 1.25em;">
-              <i class="bi bi-moon-fill ms-2"></i>
-            </div>
-          </li>
-        </ul>
+      <div class="container">
+        <a class="navbar-brand" id="navbarLogo" href="https://visualizer.frequenze.org">Frequenze</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="bi bi-list"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" id="navbarWebApp" href="index.html">Web App</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" id="navbarMaxforLive" href="max-for-live.html">Download Max for Live device</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navbarHelp" href="help.html">Help and Support</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navbarAbout" href="about.html">About</a>
+            </li>
+            <li class="nav-item d-flex align-items-center ps-3">
+              <div class="form-check form-switch d-flex align-items-center m-0 p-0">
+                <i class="bi bi-sun-fill me-2"></i>
+                <input class="form-check-input m-0" type="checkbox" role="switch" id="themeSwitcher" style="cursor: pointer; width: 2.5em; height: 1.25em;">
+                <i class="bi bi-moon-fill ms-2"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
     <div class="container my-3 text-center">
       <div class="row">
         <div class="col-12 mt-3">
@@ -159,24 +159,28 @@
     <div class="bg-light-subtle">
       <div class="container mt-5 py-4">
         <footer class="row">
-          <div class="col-3">
-            <ul class="list-inline fs-4">
+          <div class="col-12 col-md-3">
+            <ul class="list-inline fs-4 text-center text-md-start">
               <li class="list-inline-item"><a href="https://www.youtube.com/@frequenze_academy" class="bi bi-youtube" target="_blank"></a></li>
               <li class="list-inline-item"><a href="https://www.instagram.com/frequenze_academy" class="bi bi-instagram" target="_blank"></a></li>
               <li class="list-inline-item"><a href="https://tiktok.com/@frequenze_academy" class="bi bi-tiktok" target="_blank""></a></li>
               <li class="list-inline-item"><a href="https://www.facebook.com/frequenze_academy" class="bi bi-facebook" target="_blank"></a></li>
             </ul>
           </div>
-          <div class="col-6 text-center" style="font-size:0.85rem">
-            <p>&copy; 2026 Frequenze srl. Originally designed by <a href="https://www.federicopepe.com" target="_blank">Federico Pepe</a>, Ableton Certified Trainer.<br />This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
+          <div class="col-12 col-md-6 text-center" style="font-size:0.85rem">
+            <p>&copy; 2026 <a href="https://www.frequenze.org" id="footerFrequenze" target="_blank">Frequenze Academy</a>. Originally designed by <a href="https://www.federicopepe.com" target="_blank">Federico Pepe</a>, Ableton Certified Trainer.<br />This project is not affiliated with, authorized by, or endorsed by Ableton.</p>
           </div>
-          <div class="col-3">
-            <ul class="list-inline text-end">
+          <div class="col-12 col-md-3">
+            <ul class="list-inline text-center text-md-end">
               <li class="list-inline-item"><a href="https://www.frequenze.org/terms" target="_blank">Terms and conditions</a></li>
               <li class="list-inline-item"><a href="https://www.frequenze.org/privacy" target="_blank">Privacy Policy</a></li>
             </ul>
           </div>
         </footer>
+        <div class="row">
+          <div class="col-12 text-center">
+            <a href="https://www.ableton.com/en/certified-training/frequenze/" id="actc" target="_blank">Frequenze is an Ableton Certified Training Center</a></div>
+        </div>
       </div>
     </div>
     <script src="theme-chooser.js"></script>
